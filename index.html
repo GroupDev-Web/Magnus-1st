@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ice Dodo</title>
+    <title>Ice Dodo Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,17 +18,14 @@
             color: white;
             padding: 20px 0;
         }
-        h1 {
-            margin: 0;
-        }
-        .container {
-            padding: 20px;
-        }
         .ice-dodo {
-            width: 300px;
+            width: 150px;
             height: auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .ice-dodo:hover {
+            transform: scale(1.1);
         }
         footer {
             margin-top: 20px;
@@ -36,25 +33,42 @@
             background-color: #00796b;
             color: white;
         }
+        .score {
+            font-size: 24px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to Ice Dodo!</h1>
+        <h1>Ice Dodo Game!</h1>
     </header>
     <div class="container">
-        <img src="https://via.placeholder.com/300x200" alt="Ice Dodo" class="ice-dodo">
-        <h2>The Coolest Bird Around</h2>
-        <p>Discover the amazing Ice Dodo! This mythical creature loves ice and adventure. Join us as we explore the icy realms of imagination!</p>
-        <h3>Features</h3>
-        <ul>
-            <li>Charming designs</li>
-            <li>Interactive ice-themed games</li>
-            <li>Fun facts about the Dodo</li>
-        </ul>
+        <img src="https://via.placeholder.com/150" alt="Ice Dodo" class="ice-dodo" id="iceDodo">
+        <div class="score" id="score">Score: 0</div>
     </div>
     <footer>
         <p>&copy; 2024 Ice Dodo Adventures</p>
     </footer>
+    
+    <script>
+        let score = 0;
+        const scoreDisplay = document.getElementById('score');
+        const iceDodo = document.getElementById('iceDodo');
+
+        iceDodo.addEventListener('click', () => {
+            score++;
+            scoreDisplay.textContent = `Score: ${score}`;
+            moveDodo();
+        });
+
+        function moveDodo() {
+            const x = Math.random() * (window.innerWidth - 150); // Adjust for image width
+            const y = Math.random() * (window.innerHeight - 150); // Adjust for image height
+            iceDodo.style.position = 'absolute';
+            iceDodo.style.left = `${x}px`;
+            iceDodo.style.top = `${y}px`;
+        }
+    </script>
 </body>
 </html>
